@@ -339,7 +339,7 @@ typedef void (*cbc128_f)(const uint8_t *in, uint8_t *out, size_t len,
 // given IV and block cipher in CBC mode. The input need not be a multiple of
 // 128 bits long, but the output will round up to the nearest 128 bit multiple,
 // zero padding the input if needed. The IV will be updated on return.
-void CRYPTO_cbc128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
+OPENSSL_EXPORT void CRYPTO_cbc128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
                            const AES_KEY *key, uint8_t ivec[16],
                            block128_f block);
 
@@ -347,7 +347,7 @@ void CRYPTO_cbc128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
 // given IV and block cipher in CBC mode. If |len| is not a multiple of 128
 // bits then only that many bytes will be written, but a multiple of 128 bits
 // is always read from |in|. The IV will be updated on return.
-void CRYPTO_cbc128_decrypt(const uint8_t *in, uint8_t *out, size_t len,
+OPENSSL_EXPORT void CRYPTO_cbc128_decrypt(const uint8_t *in, uint8_t *out, size_t len,
                            const AES_KEY *key, uint8_t ivec[16],
                            block128_f block);
 
@@ -359,7 +359,7 @@ void CRYPTO_cbc128_decrypt(const uint8_t *in, uint8_t *out, size_t len,
 // requirement that |len| be a multiple of any value and any partial blocks are
 // stored in |ivec| and |*num|, the latter must be zero before the initial
 // call.
-void CRYPTO_ofb128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
+OPENSSL_EXPORT void CRYPTO_ofb128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
                            const AES_KEY *key, uint8_t ivec[16], unsigned *num,
                            block128_f block);
 
@@ -370,25 +370,25 @@ void CRYPTO_ofb128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
 // from |in| to |out| using |block| in CFB mode. There's no requirement that
 // |len| be a multiple of any value and any partial blocks are stored in |ivec|
 // and |*num|, the latter must be zero before the initial call.
-void CRYPTO_cfb128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
+OPENSSL_EXPORT void CRYPTO_cfb128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
                            const AES_KEY *key, uint8_t ivec[16], unsigned *num,
                            int enc, block128_f block);
 
 // CRYPTO_cfb128_8_encrypt encrypts (or decrypts, if |enc| is zero) |len| bytes
 // from |in| to |out| using |block| in CFB-8 mode. Prior to the first call
 // |num| should be set to zero.
-void CRYPTO_cfb128_8_encrypt(const uint8_t *in, uint8_t *out, size_t len,
+OPENSSL_EXPORT void CRYPTO_cfb128_8_encrypt(const uint8_t *in, uint8_t *out, size_t len,
                              const AES_KEY *key, uint8_t ivec[16],
                              unsigned *num, int enc, block128_f block);
 
 // CRYPTO_cfb128_1_encrypt encrypts (or decrypts, if |enc| is zero) |len| bytes
 // from |in| to |out| using |block| in CFB-1 mode. Prior to the first call
 // |num| should be set to zero.
-void CRYPTO_cfb128_1_encrypt(const uint8_t *in, uint8_t *out, size_t bits,
+OPENSSL_EXPORT void CRYPTO_cfb128_1_encrypt(const uint8_t *in, uint8_t *out, size_t bits,
                              const AES_KEY *key, uint8_t ivec[16],
                              unsigned *num, int enc, block128_f block);
 
-size_t CRYPTO_cts128_encrypt_block(const uint8_t *in, uint8_t *out, size_t len,
+OPENSSL_EXPORT size_t CRYPTO_cts128_encrypt_block(const uint8_t *in, uint8_t *out, size_t len,
                                    const AES_KEY *key, uint8_t ivec[16],
                                    block128_f block);
 
