@@ -25,8 +25,8 @@ static_assert(alignof(CRYPTO_refcount_t) == alignof(CRYPTO_atomic_u32),
 static_assert(sizeof(CRYPTO_refcount_t) == sizeof(CRYPTO_atomic_u32),
               "CRYPTO_refcount_t does not match CRYPTO_atomic_u32 size");
 
-// static_assert((CRYPTO_refcount_t)-1 == CRYPTO_REFCOUNT_MAX,
-//               "CRYPTO_REFCOUNT_MAX is incorrect");
+_Static_assert((CRYPTO_refcount_t)-1 == CRYPTO_REFCOUNT_MAX,
+              "CRYPTO_REFCOUNT_MAX is incorrect");
 
 void CRYPTO_refcount_inc(CRYPTO_refcount_t *in_count) {
   CRYPTO_atomic_u32 *count = (CRYPTO_atomic_u32 *)in_count;
